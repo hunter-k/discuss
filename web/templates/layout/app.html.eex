@@ -16,6 +16,11 @@
   <body>
     <nav class="light-blue">
       <div class="nav-wrapper container">
+        <%= if @conn.assigns[:user] do %>
+          <ul class="left">
+            <%= @conn.assigns.user.email %>
+          </ul>
+        <% end %>
         <a href="/" class="brand-logo">
           Discussions
         </a>
@@ -24,7 +29,7 @@
             <li>
               <%= link "Logout", to: auth_path(@conn, :signout )%>
             </li>
-          <%= else %>
+          <% else %>
             <li>
               <%= link "Sing in with Github", to: auth_path(@conn, :request, "github")%>
             </li>
